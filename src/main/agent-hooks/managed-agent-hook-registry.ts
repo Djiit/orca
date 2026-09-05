@@ -15,6 +15,7 @@ import { hermesHookService } from '../hermes/hook-service'
 import { kimiHookService } from '../kimi/hook-service'
 import { museHookService } from '../muse/hook-service'
 import { openClaudeHookService } from '../openclaude/hook-service'
+import { vibeHookService } from '../vibe/hook-service'
 
 // Why (#16441): Codex's installer awaits a codex app-server trust-grant session
 // instead of blocking the main thread on spawnSync. Widening the tuple keeps the
@@ -52,7 +53,8 @@ export const MANAGED_AGENT_HOOK_INSTALLERS: readonly ManagedAgentHookInstaller[]
   ['hermes', () => hermesHookService.install()],
   ['devin', () => devinHookService.install()],
   ['kimi', () => kimiHookService.install()],
-  ['muse', () => museHookService.install()]
+  ['muse', () => museHookService.install()],
+  ['mistral-vibe', () => vibeHookService.install()]
 ]
 
 // Why: covers the shared launcher/statusline scripts under ~/.orca/agent-hooks — the files a
@@ -74,7 +76,8 @@ export const MANAGED_AGENT_HOOK_SCRIPT_REFRESHERS: readonly ManagedAgentHookScri
   ['copilot', () => copilotHookService.refreshManagedScripts()],
   ['devin', () => devinHookService.refreshManagedScripts()],
   ['kimi', () => kimiHookService.refreshManagedScripts()],
-  ['muse', () => museHookService.refreshManagedScripts()]
+  ['muse', () => museHookService.refreshManagedScripts()],
+  ['mistral-vibe', () => vibeHookService.refreshManagedScripts()]
 ]
 
 export const MANAGED_AGENT_HOOK_REMOVERS: readonly ManagedAgentHookRemover[] = [
@@ -92,7 +95,8 @@ export const MANAGED_AGENT_HOOK_REMOVERS: readonly ManagedAgentHookRemover[] = [
   ['hermes', () => hermesHookService.remove()],
   ['devin', () => devinHookService.remove()],
   ['kimi', () => kimiHookService.remove()],
-  ['muse', () => museHookService.remove()]
+  ['muse', () => museHookService.remove()],
+  ['mistral-vibe', () => vibeHookService.remove()]
 ]
 
 export const MANAGED_AGENT_HOOK_ASYNC_REMOVERS: readonly ManagedAgentHookAsyncRemover[] = [
@@ -114,5 +118,6 @@ export const MANAGED_AGENT_HOOK_STATUS_READERS: readonly ManagedAgentHookStatusR
   ['hermes', () => hermesHookService.getStatus()],
   ['devin', () => devinHookService.getStatus()],
   ['kimi', () => kimiHookService.getStatus()],
-  ['muse', () => museHookService.getStatus()]
+  ['muse', () => museHookService.getStatus()],
+  ['mistral-vibe', () => vibeHookService.getStatus()]
 ]
