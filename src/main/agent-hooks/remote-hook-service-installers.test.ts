@@ -720,12 +720,9 @@ describe('remote hook service installers', () => {
     }
 
     const registered = new Set<string>(REMOTE_MANAGED_HOOK_INSTALLER_AGENTS)
-    const missing: string[] = []
-    for (const [agent, service] of servicesByAgent) {
-      if (typeof service.installRemote === 'function' && !registered.has(agent)) {
-        missing.push(agent)
-      }
-    }
+    const missing = [...servicesByAgent].filter(
+      ([agent, service]) => typeof service.installRemote === 'function' && !registered.has(agent)
+    )
     expect(missing).toEqual([])
   })
 
